@@ -251,3 +251,40 @@ width: 40px;
 height: 40px;
 color: black;
 }
+
+.body {
+  display: flex;
+  flex-direction: row;
+  width: 1000px;
+  background: orange;
+}
+ 
+.leftpanel {
+  display:flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 200px;
+  height: 600px;
+  background: grey;
+}
+
+.groups {
+  height: 100px;
+  width: 100px;
+  margin: auto;
+
+}
+
+.cards {
+  height: 150px;
+  width: 400px;
+  background: mediumaquamarine;
+}
+
+.innerDiv {
+  padding: 20px;
+}
+
+.user {
+  background: bisque;
+}
