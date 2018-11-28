@@ -10,11 +10,13 @@ module.exports = {
   * @param {object} res - the request object from the server.
    */
   createUser: (req, res, next) => {
-    const { firstName, lastName, email, password, phoneNum, linkedinUrl, facebookUrl, twitterUrl, instagramUrl, avatarUrl } = req.body;
+    const {
+      firstName, lastName, email, password, phoneNum, linkedinUrl, facebookUrl, twitterUrl, instagramUrl, avatarUrl,
+    } = req.body;
     const userInputs = [firstName, lastName, email, password, phoneNum, linkedinUrl, facebookUrl, twitterUrl, instagramUrl, avatarUrl];
 
     const addNewUser = () => {
-      db.none(`INSERT INTO users("firstName", "lastName", "email", "password", "phoneNum", "linkedinUrl", "facebookUrl", "twitterUrl", "instagramUrl", "avatarUrl") VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10);`, userInputs)
+      db.none('INSERT INTO users("firstName", "lastName", "email", "password", "phoneNum", "linkedinUrl", "facebookUrl", "twitterUrl", "instagramUrl", "avatarUrl") VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10);', userInputs)
         .then((result) => {
           console.log('*** result ***', result);
           res.locals.user = result;
@@ -45,7 +47,7 @@ module.exports = {
     const { email } = req.body;
     db.any('SELECT * FROM users WHERE email = $1', [email])
       .then((data) => {
-        console.log('*** data ***', data)
+        console.log('*** data ***', data);
         if (data[0]) {
           return res.send({
             msg: 'Email already exists',

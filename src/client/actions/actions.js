@@ -61,29 +61,53 @@ export const failedSignup = message => ({
 
 /* eslint-disable */
 export const submitSignup = () => {
+  const {
+    signupFirstName,
+    signupLastName,
+    signupFacebookUrl,
+    signupTwitterUrl,
+    signupLinkedInUrl,
+    signupGithubUrl,
+    signupInstagramUrl,
+    signupEmail,
+    signupPhoneNumber,
+    signupPassword,
+  } = getState().userReducer;
+
+  const signUpInfoObj = {
+    firstName: signupFirstName,
+    lastName: signupLastName,
+    facebookUrl: signupFacebookUrl,
+    twitterUrl: signupTwitterUrl,
+    linkedinUrl: signupLinkedInUrl,
+    firstName: signupGithubUrl,
+    instagramUrl: signupInstagramUrl,
+    email: signupEmail,
+    phoneNum: signupPhoneNumber,
+    password: signupPassword,
+  };
+
   return (dispatch, getState) => {
-    // fetch('/signup', {
-    //   method: 'POST',
-    //   headers: {
-    //     'Content-Type': 'application/json; charset=utf-8',
-    //   },
-    //   body: JSON.stringify(signUpInfoObj),
-    // })
-    //   .then((res) => {
-    //     return res.json();
-    //   })
-    //   .then((data) => {
-    //     if (data.signupSuccess) {
-    //       dispatch(successfulSignUp());
-    //     } else {
-    //       dispatch(failedSignUp(data.msg));
-    //     }
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //   });
-    console.log(getState().userReducer);
-    dispatch(successfulSignup());
+    fetch('/signup', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json; charset=utf-8',
+      },
+      body: JSON.stringify(signUpInfoObj),
+    })
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        if (data.signupSuccess) {
+          dispatch(successfulSignUp());
+        } else {
+          dispatch(failedSignUp(data.msg));
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 };
 /* eslint-enable */
