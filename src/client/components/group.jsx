@@ -1,11 +1,9 @@
+/* eslint-disable react/button-has-type */
 import React from 'react';
 
 
 const Group = () => (
-
-  <div>
-    <h1> Group </h1>
-  </div>
+  <button className="groups"> Group </button>
 );
 
 export default Group;
