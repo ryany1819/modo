@@ -1,8 +1,11 @@
+/* eslint-disable import/extensions */
 import React from 'react';
+
+import MainContainer from '../containers/mainContainer.jsx';
 
 const App = () => (
   <div>
-    <h1>Hello My Classy Friend</h1>
+    <MainContainer />
   </div>
 );
 
