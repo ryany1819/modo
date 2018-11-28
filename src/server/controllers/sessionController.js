@@ -6,7 +6,7 @@ module.exports = {
   checkSSIDSession: (req, res, next) => {
     res.local.user = {};
     
-    if (req,cookies.ssid) {
+    if (req,cookies.sessionId) {
       db.one('SELECT userId, sessionId FROM sessions WHERE sessionId = $1;', [req.cookies.sessionId])
         .then((session) => {
           console.log('*** Session ***', session);
