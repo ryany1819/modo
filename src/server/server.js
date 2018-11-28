@@ -30,7 +30,7 @@ app.post('/login', userController.getUserInfo);
 // app.get('/filterbySize/:size', userController.filterBySize);
 // // app.post('/images', parser.single('image'), userController.imageParser);
 // app.get('/categories/:filter', userController.getCategories);
-// app.use(express.static(`${__dirname}/../../dist`));
+app.use(express.static(`${__dirname}/../../dist`));
 
 app.listen(3000, (err) => {
   if (err) console.log(err);
