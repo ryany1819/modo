@@ -1,0 +1,253 @@
+@import url('https://fonts.googleapis.com/css?family=Alex+Brush%7COverpass+Mono:600,700');
+html, body {
+ font-family: "Segoe UI",Arial,sans-serif;
+ display:block;
+ height: 100vh;
+}
+
+input {
+   display: block;
+   width: 100%;
+     box-sizing: border-box;
+ background: #f7f7f7 none repeat scroll 0 0;
+   border: 1px solid #d4d4d4;
+   border-radius: 4px;
+   font-size: 1rem;
+   height: 50px;
+   line-height: 50px;
+   padding: .375rem .75rem;
+   color: #495057;
+   background-clip: padding-box;
+   transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+button {
+display: inline-block;
+   font-weight: 400;
+   text-align: center;
+   white-space: nowrap;
+   vertical-align: middle;
+   -webkit-user-select: none;
+   -moz-user-select: none;
+   -ms-user-select: none;
+   user-select: none;
+   border: 1px solid transparent;
+   padding: .375rem .75rem;
+   font-size: 1rem;
+   line-height: 1.5;
+   border-radius: .25rem;
+   transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+#login > div {
+ width: 300px;
+ background: #fff;
+ text-align: center;
+ border: 0px solid #d4d4d4;
+ border-radius: 4px;
+ padding: 45px;
+     box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+}
+#logincontent {
+  position: absolute;
+ height: 100%;
+ width: 100%;
+ background-color: #80CBC4;
+ text-align: center;
+}
+#logintitle {
+ padding: 100px 0 30px;
+ font-family: "Alex Brush", cursive !important;
+ font-size: 120px;
+ font-weight: 600;
+ color: #ff99ff;
+ text-shadow: 2px 2px 4px #FF0000;
+}
+#login{
+ display: flex;
+ justify-content: center;
+ align-items: center;
+}
+.loginbtn{
+ width: 100%;
+}
+
+.loginbtn {
+   color: #fff;
+   margin-top: 20px;
+   background-color: #007bff;
+   border-color: #04448a;
+   border-style: none outset outset none;
+   border-width: .2rem;
+   padding: .5rem 1rem;
+   font-size: 1.25rem;
+   line-height: 1.5;
+   border-radius: .3rem;
+}
+.registerbtn {
+  color: #fff;
+  margin-top: 20px;
+  background-color: #ff99ff;
+  border-color: #FF0000;
+  border-width: .2rem;
+  border-style: none outset outset none;
+  padding: .5rem 1rem;
+  font-size: 1.25rem;
+  line-height: 1.5;
+  border-radius: .3rem;
+  width: 100%;
+}
+
+button {
+display: inline-block;
+   font-weight: 400;
+   text-align: center;
+   white-space: nowrap;
+   vertical-align: middle;
+   -webkit-user-select: none;
+   -moz-user-select: none;
+   -ms-user-select: none;
+   user-select: none;
+   border: 1px solid transparent;
+   padding: .375rem .75rem;
+   font-size: 1rem;
+   line-height: 1.5;
+   border-radius: .25rem;
+   transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+#signupcontent {
+ background-color: #80CBC4;
+ text-align: center;
+ padding: 100px;
+}
+#signupform{
+ display: flex;
+ justify-content: center;
+ align-items: center;
+}
+#signupform label {
+ float: left;
+}
+#signupform > div {
+ width: 350px;
+ background: #fff;
+ text-align: center;
+ border: 0px solid #d4d4d4;
+ border-radius: 4px;
+ padding: 45px;
+ box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+}
+
+#signupbtn{
+ width: 100%;
+   color: #fff;
+   margin-top: 20px;
+   background-color: #007bff;
+   border-color: #007bff;
+   padding: .5rem 1rem;
+   font-size: 1.25rem;
+   line-height: 1.5;
+   border-radius: .3rem;
+}
+#userprofileouter {
+  background-color: #80CBC4;
+  min-height: 800px;
+  height: 100%;
+  padding: 50px 150px;
+}
+#userprofile {
+  display: flex;
+  background: #fff;
+  padding: 10px;
+  text-align: center;
+  border: 0px solid #d4d4d4;
+  border-radius: 4px;
+  box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+}
+#userprofileleft {
+flex: 0 0 25%;
+background-color: #ba95d4;
+text-align: center;
+padding: 15px 10px 5px;
+}
+#userprofileright{
+height: 100%;
+padding-left: 5px;
+}
+#userphoto {
+width: 180px;
+height: 180px;
+border-radius: 50%;
+background-color: black;
+display: inline-block;
+background-color: gray;
+border: 10px solid;
+}
+#avatar {
+font-size: 140px;
+border-radius: 50%;
+width: 170px;
+height: 170px;
+background-color: white;
+color: gray;
+border: 6px solid #ddd;
+}
+#userinfo {
+text-align: left;
+color: #4d394b;
+}
+#username {
+font-size: 35px;
+font-weight: 500;
+}
+#useremail {
+font-size: 25px;
+font-weight: 500;
+}
+.featurebtn {
+width: 32%;
+display: inline-block;
+height: 200px;
+margin:0;
+padding:0;
+border: none;
+float: left;
+// cursor: pointer;
+border-radius: 10px;
+border: 1px solid #ddd;
+margin: 4px;
+margin-top: 0;
+}
+.bignum {
+font-size: 60px;
+font-weight: 500;
+}
+#addnewcontact {
+padding: 15px;
+font-size: 25px;
+}
+#buttonlist{
+flex: 0 0 75%;
+}
+#grouplist {
+text-align: center;
+}
+.groupbutton {
+width: 40%;
+height: 80px;
+margin: 10px;
+background-color: gold;
+font-size: 20px;
+border-radius: 10px 0;
+
+}
+.btnactive {
+background-color: teal;
+color: white;
+}
+.smicon{
+width: 40px;
+height: 40px;
+color: black;
+}
