@@ -8,7 +8,7 @@ const userController = require('./controllers/userController.js');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// app.post('/signup', userController.createUser);
+app.post('/signup', userController.createUser);
 // app.post('/login', userController.getUser);
 // app.get('/listing', userController.getListing);
 // app.post('/listing', userController.postListing);
