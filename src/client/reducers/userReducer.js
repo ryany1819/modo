@@ -18,3 +18,15 @@ const initialState = {
   emailSuccess: false,
 };
 
+export default function (previousState = initialState, action) {
+  let stateCopy;
+  switch (action.type) {
+    case types.UPDATE_SIGNUP_USERNAME: {
+      stateCopy = Object.assign({}, previousState);
+      stateCopy.signUpInputUsername = action.payload.target.value;
+      return stateCopy;
+    }
+    default:
+      return previousState;
+  }
+}
