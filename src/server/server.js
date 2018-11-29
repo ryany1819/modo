@@ -1,14 +1,16 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
-
+// multer
+const multer = require('multer');
+const upload = multer({dest: './upload/'});
 const userController = require('./controllers/userController.js');
 const groupController = require('./controllers/groupController.js');
 const cookieController = require('./controllers/cookieController.js');
 const sessionController = require('./controllers/sessionController.js');
-// const parser = require('./cloudinary.js');
+const cloudinaryController = require('./controllers/cloudinaryController.js')
 
-const db = require('./util/postgres.js');
+// const parser = require('./cloudinary.js');
 
 const app = express();
 
@@ -74,6 +76,14 @@ app.post('/joinGroup', groupController.joinGroup, (req, res) => {
 // app.get('/filterbySize/:size', userController.filterBySize);
 // // app.post('/images', parser.single('image'), userController.imageParser);
 // app.get('/categories/:filter', userController.getCategories);
+// test upload file
+app.get('/test-upload', (req, res) => {
+  res.sendFile(__dirname + '/test-upload.html');
+});
+app.post('/upload', upload.single('upfile'), cloudinaryController.upload, (req, res) => {
+  res.send(req.file);
+});
+// for static contents
 app.use(express.static(`${__dirname}/../../dist`));
 
 app.listen(3000, (err) => {
