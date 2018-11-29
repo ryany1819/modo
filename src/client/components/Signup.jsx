@@ -46,13 +46,23 @@ const mapDispatchToProps = dispatch => ({
   updateSignupPassword: (event) => {
     dispatch(actions.updateSignupPassword(event.target.value));
   },
-  submitSignup: () => {
-    dispatch(actions.submitSignup());
+  submitSignup: (redirectToMain) => {
+    dispatch(actions.submitSignup(redirectToMain));
   },
 });
 
 /* eslint-disable */
 class Signup extends Component {
+  constructor(props) {
+    super(props);
+
+    this.redirectToMain = this.redirectToMain.bind(this);
+  }
+  
+  redirectToMain() {
+    this.props.history.push('/main');
+  }
+
   render() {
     const {
       updateSignupUsername,
@@ -76,7 +86,10 @@ class Signup extends Component {
       signupPhoneNumber,
       signupPassword,
       submitSignup,
+      history,
     } = this.props;
+
+    const { redirectToMain } = this;
 
     return (
       <div id="signupcontent">
@@ -85,7 +98,7 @@ class Signup extends Component {
           id="signupform"
           onSubmit={() => {
             event.preventDefault();
-            submitSignup();
+            submitSignup(redirectToMain);
           }}
         >
           <div>
@@ -111,7 +124,7 @@ class Signup extends Component {
             <label>Phone Number:</label>
             <input id="signupephone" type="text" value={signupPhoneNumber} onChange={updateSignupPhoneNumber} />
             <button id="signupbtn">Sign-up with MoJoe</button>
-            <button className="registerbtn">Back to Log In</button>
+            <button className="registerbtn" onClick={() => { event.preventDefault(); history.push('/'); }}>Back to Log In</button>
           </div>
         </form>
       </div>

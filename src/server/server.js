@@ -88,7 +88,7 @@ app.post('/joinGroup', groupController.joinGroup, (req, res) => {
 // app.get('/categories/:filter', userController.getCategories);
 // test upload file
 app.get('/test-upload', (req, res) => {
-  res.sendFile(__dirname + '/test-upload.html');
+  res.sendFile(`${__dirname}/test-upload.html`);
 });
 app.post('/upload', upload.single('upfile'), cloudinaryController.upload, (req, res) => {
   res.send(req.file);
