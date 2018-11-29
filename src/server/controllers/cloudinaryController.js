@@ -1,5 +1,5 @@
 const cloudinary = require('cloudinary');
-const multer = require('multer');
+const fs = require('fs');
 
 // cloudinary configuration
 cloudinary.config({
@@ -8,19 +8,18 @@ cloudinary.config({
   api_secret: process.env.API_SECRET
 })
 
-const temp = multer({dest: 'temp/'})
-
 module.exports = {
-  uploadImage: (req, res, next) => {
-    
-    let filePath = res.locals.filePath;
-    cloudinary.v2.uploader.upload(filePath, (error, result) => {
+  upload: (req, res, next) => {
+    const path = __dirname + '/../../../' + req.file.path;
+    cloudinary.v2.uploader.upload(path, (error, result) => {
       if (error) {
         throw error;
       }
-
-      res.send(locals);
+      fs.unlink(path, (err) => {
+        if (err)
+          throw err;
+        res.send(result);
+      });
     });
-    // delete image
   }
 }
