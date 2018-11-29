@@ -16,7 +16,7 @@ module.exports = {
   },
 
   getGroups: (req, res, next) => {
-    db.query('SELECT "groupName" FROM groups;')
+    db.query('SELECT "groupName", "groupId" FROM groups;')
       .then((data) => {
         console.log('List of groups', data);
         res.locals.groups = data;

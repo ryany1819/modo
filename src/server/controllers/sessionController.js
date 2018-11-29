@@ -27,12 +27,11 @@ module.exports = {
       console.log('There is no cookie for the following user');
       res.locals.data.loginSuccess = false;
       res.send(res.locals.data);
-      return;
     }
   },
 
   createSession: (req, res, next) => {
-    db.none('DELETE FROM sessions WHERE userId = $1;', [res.locals.user.userId])
+    db.none('DELETE FROM sessions WHERE "userId" = $1;', [res.locals.user.userId])
       .then(() => {
         res.locals.sessionId = uuidv4();
         return db.none('INSERT INTO sessions("userId", "sessionId") VALUES ($1, $2);', [res.locals.user.userId, res.locals.sessionId]);
@@ -41,7 +40,8 @@ module.exports = {
         console.log('*** res.locals ***', res.locals);
         next();
       })
-      .catch(() => {
+      .catch((err) => {
+        console.log(err);
         res.status(500).send();
       });
   },

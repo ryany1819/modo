@@ -33,10 +33,15 @@ class LeftContainer extends Component {
   }
 
   render() {
+    //  console.log('props', this.props.groups)
+
     const { groups, getCards } = this.props;
-    const groupsArray = groups.map(group => <Group group={group} getCards={getCards} />);
+    const groupsArray = groups.map((group, index) => <Group group={group} getCards={getCards} key={ index } />);
     return (
-      { groupsArray }
+      <div>
+        { groupsArray }
+      </div>
+
     );
   }
 }
