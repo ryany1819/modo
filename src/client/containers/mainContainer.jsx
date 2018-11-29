@@ -1,26 +1,32 @@
 /* eslint-disable import/extensions */
-import React from 'react';
-import LeftContainer from './LeftContainer.jsx';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import LeftContainer from './leftContainer.jsx';
 import UserContainer from './userContainer.jsx';
 import Cards from '../components/card.jsx';
+import * as actions from '../actions/actions.js';
 
+const mapStateToProps = store => ({
+  isLoggedIn: store.userReducer.isLoggedIn,
+  loggedInUser: store.userReducer.loggedInUser,
+});
 
+const mainContainer = (props) => {
+  console.log(props.isLoggedIn, props.loggedInUser);
+  return (
+    <div className="body">
+      <LeftContainer />
+      <div className="innerDiv">
+        <UserContainer />
+        <div>
 
-const MainContainer = () => (
-
-  <div className="body">
-    <LeftContainer />
-    <div className="innerDiv">
-      <UserContainer />
-      <div>
-
-        <Cards />
-        <Cards />
-        <Cards />
+          <Cards />
+          <Cards />
+          <Cards />
+        </div>
       </div>
     </div>
-  </div>
-);
+  );
+};
 
-
-export default MainContainer;
+export default connect(mapStateToProps)(mainContainer);

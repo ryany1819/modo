@@ -17,8 +17,8 @@ const mapStateToProps = store => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  getGroups: (email) => {
-    dispatch(actions.getGroups(email));
+  getGroups: () => {
+    dispatch(actions.getGroups());
   },
   getCards: (groupId) => {
     dispatch(actions.getCards(groupId));
@@ -29,15 +29,16 @@ class LeftContainer extends Component {
   componentWillMount() {
     const { loginEmail, getGroups } = this.props;
 
-    getGroups(loginEmail);
+    getGroups();
   }
 
   render() {
     const { groups, getCards } = this.props;
-    const groupsArray = groups.map(group => <Group group={group} func={getCards} />);
+    const groupsArray = groups.map(group => <Group group={group} getCards={getCards} />);
     return (
-      { groupsArray }
+     { groupsArray }
     );
+    )
   }
 }
 

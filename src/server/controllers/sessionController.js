@@ -1,16 +1,17 @@
-const db = require('../util/postgres.js');
-
 const uuidv4 = require('uuid/v4');
+
+const db = require('../util/postgres.js');
 
 module.exports = {
   checkSSIDSession: (req, res, next) => {
-    res.local.user = {};
-    
-    if (req,cookies.ssid) {
-      db.one('SELECT userId, sessionId FROM sessions WHERE sessionId = $1;', [req.cookies.sessionId])
+    console.log('is it hitting checkSSID');
+    // res.local.user = {};
+
+    if (req.cookies.sessionId) {
+      db.one('SELECT "userId", "sessionId" FROM sessions WHERE "sessionId" = $1;', [req.cookies.sessionId])
         .then((session) => {
           console.log('*** Session ***', session);
-          if (req,cookies.sessionId === session.sessionId) {
+          if (req.cookies.sessionId === session.sessionId) {
             res.locals.user.id = session.userId;
             console.log('Session exists!');
             res.locals.user.loginSuccess = true;
@@ -34,15 +35,15 @@ module.exports = {
     db.none('DELETE FROM sessions WHERE userId = $1;', [res.locals.user.userId])
       .then(() => {
         res.locals.sessionId = uuidv4();
-        return db.none('INSERT INTO sessions(userId, sessionId) VALUES ($1, $2);', [res.locals.user.userId, res.locals.sessionId]);
+        return db.none('INSERT INTO sessions("userId", "sessionId") VALUES ($1, $2);', [res.locals.user.userId, res.locals.sessionId]);
       })
       .then(() => {
-        console.log('*** res.locals ***', res.locals)
+        console.log('*** res.locals ***', res.locals);
         next();
       })
       .catch(() => {
         res.status(500).send();
-      })
+      });
   },
 
   deleteSession: (req, res, next) => {
