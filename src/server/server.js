@@ -1,13 +1,17 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
+// multer
+const multer = require('multer');
 
+const upload = multer({ dest: './upload/' });
 const userController = require('./controllers/userController.js');
-// const groupController = require('./controllers/groupController.js');
-// const sessionController = require('./controllers/sessionController.js');
-// const parser = require('./cloudinary.js');
+const groupController = require('./controllers/groupController.js');
+const cookieController = require('./controllers/cookieController.js');
+const sessionController = require('./controllers/sessionController.js');
+const cloudinaryController = require('./controllers/cloudinaryController.js');
 
-const db = require('./util/postgres.js');
+// const parser = require('./cloudinary.js');
 
 const app = express();
 
@@ -20,10 +24,51 @@ app.use((req, res, next) => {
   next();
 });
 
-app.post('/signup', userController.checkEmailExists, userController.createUser, (req, res) => {
-  res.json('hi');
+/* ============================================ User ============================================== */
+
+// app.get('/', sessionController.checkSSIDSession, (req, res) => {
+//   res.status(200).send(res.locals.data);
+// });
+
+app.post('/signup', userController.checkEmailExists, userController.createUser, sessionController.createSession, cookieController.setSSIDCookie, (req, res) => {
+  res.status(200).json({
+    signupSuccess: true,
+    loginSuccess: true,
+  });
 });
-app.post('/login', userController.getUserInfo);
+
+app.post('/login', userController.verifyUser, sessionController.createSession, cookieController.setSSIDCookie, (req, res) => {
+  res.status(200).json({
+    email: res.locals.user.email,
+    loginSucess: true,
+    msg: 'Login Sucessful!',
+  });
+});
+
+// app.delete('/logout', cookieController.deleteSSIDCookie, sessionController.deleteSession, (req, res) => {
+//   res.status(200).json({
+//     logoutSuccess: true,
+//   });
+// });
+
+app.post('/newGroup', groupController.createGroup, (req, res) => {
+  res.status(200).json({
+    newGroupSuccess: true,
+    msg: 'New group created successful!',
+  });
+});
+
+app.get('/selectGroup', groupController.selectGroup, (req, res) => {
+  res.status(200).send(res.locals.group);
+});
+
+app.post('/joinGroup', groupController.joinGroup, (req, res) => {
+  res.status(200).json({
+    joinGroupSuccess: true,
+    msg: 'Joined new group successful!',
+  });
+});
+
 // app.get('/listing', userController.getListing);
 // app.post('/listing', userController.postListing);
 // app.get('/filterbyBrand/:brand', userController.filterByBrand);
@@ -32,6 +77,14 @@ app.post('/login', userController.getUserInfo);
 // app.get('/filterbySize/:size', userController.filterBySize);
 // // app.post('/images', parser.single('image'), userController.imageParser);
 // app.get('/categories/:filter', userController.getCategories);
+// test upload file
+app.get('/test-upload', (req, res) => {
+  res.sendFile(`${__dirname}/test-upload.html`);
+});
+app.post('/upload', upload.single('upfile'), cloudinaryController.upload, (req, res) => {
+  res.send(req.file);
+});
+// for static contents
 app.use(express.static(`${__dirname}/../../dist`));
 
 app.listen(3000, (err) => {

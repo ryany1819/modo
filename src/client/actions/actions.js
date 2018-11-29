@@ -141,7 +141,8 @@ export const submitLogin = (redirectToMain) => {
     } = getState().userReducer;
   
     const loginInfoObj = {
-      
+      email: loginEmail,
+      password: loginPassword,
     };
 
     fetch('/login', {
@@ -155,12 +156,12 @@ export const submitLogin = (redirectToMain) => {
         return res.json();
       })
       .then((data) => {
-        // if (data.signupSuccess) {
+        if (data.loginSuccess) {
           redirectToMain();
           dispatch(successfulLogin(loginEmail));
-        // } else {
-        //   dispatch(failedSignUp(data.msg));
-        // }
+        } else {
+          
+        }
       })
       .catch((err) => {
         console.log(err);
