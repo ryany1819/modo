@@ -1,11 +1,12 @@
 /* eslint-disable import/extensions */
 import React from 'react';
-import LeftContainer from './leftContainer.jsx';
+import LeftContainer from './LeftContainer.jsx';
 import UserContainer from './userContainer.jsx';
 import Cards from '../components/card.jsx';
 
 
-const mainContainer = () => (
+
+const MainContainer = () => (
 
   <div className="body">
     <LeftContainer />
@@ -13,12 +14,13 @@ const mainContainer = () => (
       <UserContainer />
       <div>
 
-       <Cards />
-       <Cards />
-       <Cards />
-     </div>
+        <Cards />
+        <Cards />
+        <Cards />
+      </div>
     </div>
   </div>
 );
 
-export default mainContainer;
+
+export default MainContainer;

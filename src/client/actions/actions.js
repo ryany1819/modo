@@ -97,3 +97,60 @@ export const updateLoginPassword = event => ({
   type: types.UPDATE_SIGNUP_PASSWORD,
   payload: event,
 });
+
+export const updateGroups = data => ({
+  type: types.UPDATE_GROUPS,
+  payload: data,
+});
+
+export const updateCards = data => ({
+  type: types.UPDATE_CARDS,
+  payload: data,
+});
+
+/* eslint-disable */
+export const getGroups = (email) => {
+  return (dispatch, getState) => {
+    fetch(`http://localhost:8080/userGroups/${}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json; charset=utf-8',
+      },
+    })
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+          dispatch(updateGroups(data));
+        
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    dispatch(successfulSignup());
+  };
+};
+/* eslint-enable */
+
+/* eslint-disable */
+export const getCards = (groupId) => {
+  return (dispatch, getState) => {
+    fetch(`http://localhost:8080/groupCards/${groupId}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json; charset=utf-8',
+      },
+    })
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+          dispatch(updateGroups(data));
+        
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    dispatch(successfulSignup());
+  };
+};

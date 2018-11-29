@@ -2,7 +2,7 @@
 import React from 'react';
 
 
-const Group = () => (
+const Group = (props) => (
   <button className="groups"> Group </button>
 );
 
