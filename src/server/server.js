@@ -37,10 +37,18 @@ app.post('/signup', userController.checkEmailExists, userController.createUser, 
   });
 });
 
-app.post('/login', userController.verifyUser, sessionController.createSession, cookieController.setSSIDCookie, (req, res) => {
+// app.post('/login', userController.verifyUser, sessionController.createSession, cookieController.setSSIDCookie, (req, res) => {
+//   res.status(200).json({
+//     email: res.locals.user.email,
+//     loginSucess: true,
+//     msg: 'Login Sucessful!',
+//   });
+// });
+
+app.post('/login', userController.verifyUser, (req, res) => {
   res.status(200).json({
     email: res.locals.user.email,
-    loginSucess: true,
+    loginSuccess: true,
     msg: 'Login Sucessful!',
   });
 });

@@ -96,7 +96,7 @@ class Signup extends Component {
         <div id="logintitle">MoJoe</div>
         <form
           id="signupform"
-          onSubmit={() => {
+          onSubmit={(event) => {
             event.preventDefault();
             submitSignup(redirectToMain);
           }}

@@ -15,6 +15,7 @@ const initialState = {
   loginPassword: '',
   isLoggedIn: false,
   loggedInUser: '',
+  showloginFailedMessage: false,
 };
 
 export default function (state = initialState, action) {
@@ -103,6 +104,12 @@ export default function (state = initialState, action) {
         ...state,
         isLoggedIn: true,
         loggedInUser: action.payload,
+      };
+
+    case types.FAILED_LOGIN:
+      return {
+        ...state,
+        showloginFailedMessage: true,
       };
 
     default:
