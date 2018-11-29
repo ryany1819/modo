@@ -16,7 +16,7 @@ module.exports = {
     const userInputs = [firstName, lastName, email, password, phoneNum, linkedinUrl, githubUrl, facebookUrl, twitterUrl, instagramUrl, avatarUrl];
 
     const addNewUser = () => {
-      db.none(`INSERT INTO users("firstName", "lastName", "email", "password", "phoneNum", "linkedinUrl", "githubUrl", "facebookUrl", "twitterUrl", "instagramUrl", "avatarUrl") VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11);`, userInputs)
+      db.none('INSERT INTO users("firstName", "lastName", "email", "password", "phoneNum", "linkedinUrl", "githubUrl", "facebookUrl", "twitterUrl", "instagramUrl", "avatarUrl") VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11);', userInputs)
         .then((result) => {
           console.log('*** result ***', result);
           res.locals.user = email;
@@ -81,18 +81,17 @@ module.exports = {
             loginSuccess: false,
             msg: 'Incorrect email or password',
           });
-        } else {
-          bcrypt.compare(password, user.password, (error, resolve) => {
-            if (resolve) {
-              res.locals.user = user;
-              return next();
-            }
-            return res.status(200).send({
-              loginSuccess: false,
-              msg: 'Incorrect email or password',
-            });
-          });
         }
+        bcrypt.compare(password, user.password, (error, resolve) => {
+          if (resolve) {
+            res.locals.user = user;
+            return next();
+          }
+          return res.status(200).send({
+            loginSuccess: false,
+            msg: 'Incorrect email or password',
+          });
+        });
       })
       .catch(err => console.error(err));
   },
