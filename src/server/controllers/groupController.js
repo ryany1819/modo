@@ -15,6 +15,31 @@ module.exports = {
       .catch(err => res.status(500).send(err));
   },
 
+  getGroups: (req, res, next) => {
+    db.query('SELECT "groupName" FROM groups;')
+      .then((data) => {
+        console.log('List of groups', data);
+        res.locals.groups = data;
+        next();
+      })
+      .catch(err => console.log(err));
+  },
+
+  getUserGroup: (req, res, next) => {
+    const {
+      groupId,
+    } = req.params;
+    console.log('All users', groupId);
+
+    db.any('SELECT users.* FROM users JOIN "userGroups" ON users."userId" = "userGroups"."userId" WHERE "userGroups"."groupId" = $1;', [groupId])
+      .then((group) => {
+        console.log('Selected group', group);
+        res.locals.userGroup = group;
+        next();
+      })
+      .catch(err => console.log(err));
+  },
+
   selectGroup: (req, res, next) => {
     const {
       groupId,
