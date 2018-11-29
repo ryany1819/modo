@@ -3,12 +3,13 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 // multer
 const multer = require('multer');
-const upload = multer({dest: './upload/'});
+
+const upload = multer({ dest: './upload/' });
 const userController = require('./controllers/userController.js');
 const groupController = require('./controllers/groupController.js');
 const cookieController = require('./controllers/cookieController.js');
 const sessionController = require('./controllers/sessionController.js');
-const cloudinaryController = require('./controllers/cloudinaryController.js')
+const cloudinaryController = require('./controllers/cloudinaryController.js');
 
 // const parser = require('./cloudinary.js');
 
@@ -33,6 +34,7 @@ app.post('/signup', userController.checkEmailExists, userController.createUser, 
   res.status(200).json({
     signupSuccess: true,
     loginSuccess: true,
+    msg: 'Signup successful!',
   });
 });
 
@@ -50,15 +52,23 @@ app.post('/login', userController.verifyUser, sessionController.createSession, c
 //   });
 // });
 
-app.post('/newGroup', groupController.createGroup, (req, res) => {
+app.post('/createGroup', groupController.createGroup, (req, res) => {
   res.status(200).json({
     newGroupSuccess: true,
     msg: 'New group created successful!',
   });
 });
 
+app.get('/getGroups', groupController.getGroups, (req, res) => {
+  res.status(200).send(res.locals.groups);
+});
+
 app.get('/selectGroup', groupController.selectGroup, (req, res) => {
   res.status(200).send(res.locals.group);
+});
+
+app.get('/getUserGroup/:groupId', groupController.getUserGroup, (req, res) => {
+  res.status(200).send(res.locals.userGroup);
 });
 
 app.post('/joinGroup', groupController.joinGroup, (req, res) => {
