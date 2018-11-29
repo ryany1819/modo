@@ -117,18 +117,22 @@ export const submitSignup = (redirectToMain) => {
 /* eslint-enable */
 
 export const updateLoginEmail = event => ({
-  type: types.UPDATE_SIGNUP_PASSWORD,
+  type: types.UPDATE_LOGIN_EMAIL,
   payload: event,
 });
 
 export const updateLoginPassword = event => ({
-  type: types.UPDATE_SIGNUP_PASSWORD,
+  type: types.UPDATE_LOGIN_PASSWORD,
   payload: event,
 });
 
 export const successfulLogin = email => ({
   type: types.SUCCESSFUL_LOGIN,
   payload: email,
+});
+
+export const failedLogin = () => ({
+  type: types.FAILED_LOGIN,
 });
 
 /* eslint-disable */
@@ -160,7 +164,7 @@ export const submitLogin = (redirectToMain) => {
           redirectToMain();
           dispatch(successfulLogin(loginEmail));
         } else {
-          
+          dispatch(failedLogin());
         }
       })
       .catch((err) => {
