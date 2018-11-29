@@ -3,8 +3,9 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 
 const userController = require('./controllers/userController.js');
-// const groupController = require('./controllers/groupController.js');
-// const sessionController = require('./controllers/sessionController.js');
+const groupController = require('./controllers/groupController.js');
+const cookieController = require('./controllers/cookieController.js');
+const sessionController = require('./controllers/sessionController.js');
 // const parser = require('./cloudinary.js');
 
 const db = require('./util/postgres.js');
@@ -20,8 +21,51 @@ app.use((req, res, next) => {
   next();
 });
 
-app.post('/signup', userController.checkEmailExists, userController.createUser);
-app.post('/login', userController.getUserInfo);
+/* ============================================ User ============================================== */
+
+// app.get('/', sessionController.checkSSIDSession, (req, res) => {
+//   res.status(200).send(res.locals.data);
+// });
+
+app.post('/signup', userController.checkEmailExists, userController.createUser, sessionController.createSession, cookieController.setSSIDCookie, (req, res) => {
+  res.status(200).json({
+    signupSuccess: true,
+    loginSuccess: true,
+  });
+});
+
+app.post('/login', userController.verifyUser, sessionController.createSession, cookieController.setSSIDCookie, (req, res) => {
+  res.status(200).json({
+    email: res.locals.user.email,
+    loginSucess: true,
+    msg: 'Login Sucessful!',
+  });
+});
+
+// app.delete('/logout', cookieController.deleteSSIDCookie, sessionController.deleteSession, (req, res) => {
+//   res.status(200).json({
+//     logoutSuccess: true,
+//   });
+// });
+
+app.post('/newGroup', groupController.createGroup, (req, res) => {
+  res.status(200).json({
+    newGroupSuccess: true,
+    msg: 'New group created successful!',
+  });
+});
+
+app.get('/selectGroup', groupController.selectGroup, (req, res) => {
+  res.status(200).send(res.locals.group);
+});
+
+app.post('/joinGroup', groupController.joinGroup, (req, res) => {
+  res.status(200).json({
+    joinGroupSuccess: true,
+    msg: 'Joined new group successful!',
+  });
+});
+
 // app.get('/listing', userController.getListing);
 // app.post('/listing', userController.postListing);
 // app.get('/filterbyBrand/:brand', userController.filterByBrand);
