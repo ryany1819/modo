@@ -59,7 +59,7 @@ class Login extends Component {
     return (
       <div>
         <div id="logincontent">
-          <div id="logintitle">MoDo</div>
+          <div id="logintitle">MoJoe</div>
           <form
             id="login"
             onSubmit={(event) => {
