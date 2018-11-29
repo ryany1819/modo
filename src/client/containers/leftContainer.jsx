@@ -27,7 +27,7 @@ const mapDispatchToProps = dispatch => ({
 
 class LeftContainer extends Component {
   componentWillMount() {
-    const { loginEmail, getGroups } = this.props;
+    const { getGroups } = this.props;
 
     getGroups();
   }
@@ -36,9 +36,8 @@ class LeftContainer extends Component {
     const { groups, getCards } = this.props;
     const groupsArray = groups.map(group => <Group group={group} getCards={getCards} />);
     return (
-     { groupsArray }
+      { groupsArray }
     );
-    )
   }
 }
 

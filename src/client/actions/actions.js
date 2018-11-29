@@ -185,7 +185,7 @@ export const updateCards = data => ({
 /* eslint-disable */
 export const getGroups = () => {
   return (dispatch, getState) => {
-    fetch(`/userGroups`, {
+    fetch(`/getGroups`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json; charset=utf-8',
@@ -206,7 +206,7 @@ export const getGroups = () => {
 /* eslint-disable */
 export const getCards = (groupId) => {
   return (dispatch, getState) => {
-    fetch(`/groupCards/${groupId}`, {
+    fetch(`/getUserGroup/${groupId}`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json; charset=utf-8',
