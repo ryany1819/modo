@@ -111,7 +111,7 @@ export const updateCards = data => ({
 /* eslint-disable */
 export const getGroups = (email) => {
   return (dispatch, getState) => {
-    fetch(`http://localhost:8080/userGroups/${}`, {
+    fetch(`/userGroups/${}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json; charset=utf-8',
@@ -135,7 +135,7 @@ export const getGroups = (email) => {
 /* eslint-disable */
 export const getCards = (groupId) => {
   return (dispatch, getState) => {
-    fetch(`http://localhost:8080/groupCards/${groupId}`, {
+    fetch(`/groupCards/${groupId}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json; charset=utf-8',
