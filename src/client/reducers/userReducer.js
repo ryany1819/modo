@@ -14,7 +14,7 @@ const initialState = {
   loginEmail: '',
   loginPassword: '',
   isLoggedIn: false,
-  loggedInUser: -Infinity,
+  loggedInUser: '',
 };
 
 export default function (state = initialState, action) {
@@ -95,6 +95,14 @@ export default function (state = initialState, action) {
       return {
         ...state,
         isLoggedIn: true,
+        loggedInUser: action.payload,
+      };
+
+    case types.SUCCESSFUL_LOGIN:
+      return {
+        ...state,
+        isLoggedIn: true,
+        loggedInUser: action.payload,
       };
 
     default:

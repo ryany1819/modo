@@ -50,8 +50,9 @@ export const updateSignupPassword = event => ({
   payload: event,
 });
 
-export const successfulSignup = () => ({
+export const successfulSignup = email => ({
   type: types.SUCCESSFUL_SIGNUP,
+  payload: email,
 });
 
 export const failedSignup = message => ({
@@ -60,50 +61,53 @@ export const failedSignup = message => ({
 });
 
 /* eslint-disable */
-export const submitSignup = () => {
-  const {
-    signupFirstName,
-    signupLastName,
-    signupFacebookUrl,
-    signupTwitterUrl,
-    signupLinkedInUrl,
-    signupGithubUrl,
-    signupInstagramUrl,
-    signupEmail,
-    signupPhoneNumber,
-    signupPassword,
-  } = getState().userReducer;
-
-  const signUpInfoObj = {
-    firstName: signupFirstName,
-    lastName: signupLastName,
-    facebookUrl: signupFacebookUrl,
-    twitterUrl: signupTwitterUrl,
-    linkedinUrl: signupLinkedInUrl,
-    firstName: signupGithubUrl,
-    instagramUrl: signupInstagramUrl,
-    email: signupEmail,
-    phoneNum: signupPhoneNumber,
-    password: signupPassword,
-  };
-
+export const submitSignup = (redirectToMain) => {
   return (dispatch, getState) => {
+    // Get user info from state.
+    const {
+      signupFirstName,
+      signupLastName,
+      signupFacebookUrl,
+      signupTwitterUrl,
+      signupLinkedInUrl,
+      signupGithubUrl,
+      signupInstagramUrl,
+      signupEmail,
+      signupPhoneNumber,
+      signupPassword,
+    } = getState().userReducer;
+  
+    const signupInfoObj = {
+      firstName: signupFirstName,
+      lastName: signupLastName,
+      facebookUrl: signupFacebookUrl,
+      twitterUrl: signupTwitterUrl,
+      linkedinUrl: signupLinkedInUrl,
+      githubUrl: signupGithubUrl,
+      instagramUrl: signupInstagramUrl,
+      email: signupEmail,
+      phoneNum: signupPhoneNumber,
+      password: signupPassword,
+      avatarUrl: 'https://res.cloudinary.com/demo/image/upload/w_400,h_400,c_crop,g_face,r_max/w_200/lady.jpg'
+    };
+
     fetch('/signup', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json; charset=utf-8',
       },
-      body: JSON.stringify(signUpInfoObj),
+      body: JSON.stringify(signupInfoObj),
     })
       .then((res) => {
         return res.json();
       })
       .then((data) => {
-        if (data.signupSuccess) {
-          dispatch(successfulSignUp());
-        } else {
-          dispatch(failedSignUp(data.msg));
-        }
+        // if (data.signupSuccess) {
+          redirectToMain();
+          dispatch(successfulSignup(signupEmail));
+        // } else {
+        //   dispatch(failedSignUp(data.msg));
+        // }
       })
       .catch((err) => {
         console.log(err);
@@ -121,3 +125,46 @@ export const updateLoginPassword = event => ({
   type: types.UPDATE_SIGNUP_PASSWORD,
   payload: event,
 });
+
+export const successfulLogin = email => ({
+  type: types.SUCCESSFUL_LOGIN,
+  payload: email,
+});
+
+/* eslint-disable */
+export const submitLogin = (redirectToMain) => {
+  return (dispatch, getState) => {
+    // Get user info from state.
+    const {
+      loginEmail,
+      loginPassword
+    } = getState().userReducer;
+  
+    const loginInfoObj = {
+      
+    };
+
+    fetch('/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json; charset=utf-8',
+      },
+      body: JSON.stringify(loginInfoObj),
+    })
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        // if (data.signupSuccess) {
+          redirectToMain();
+          dispatch(successfulLogin(loginEmail));
+        // } else {
+        //   dispatch(failedSignUp(data.msg));
+        // }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+};
+/* eslint-enable */

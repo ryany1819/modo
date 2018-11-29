@@ -11,12 +11,12 @@ module.exports = {
    */
   createUser: (req, res, next) => {
     const {
-      firstName, lastName, email, password, phoneNum, linkedinUrl, facebookUrl, twitterUrl, instagramUrl, avatarUrl,
+      firstName, lastName, email, password, phoneNum, linkedinUrl, githubUrl, facebookUrl, twitterUrl, instagramUrl, avatarUrl,
     } = req.body;
-    const userInputs = [firstName, lastName, email, password, phoneNum, linkedinUrl, facebookUrl, twitterUrl, instagramUrl, avatarUrl];
+    const userInputs = [firstName, lastName, email, password, phoneNum, linkedinUrl, githubUrl, facebookUrl, twitterUrl, instagramUrl, avatarUrl];
 
     const addNewUser = () => {
-      db.none('INSERT INTO users("firstName", "lastName", "email", "password", "phoneNum", "linkedinUrl", "facebookUrl", "twitterUrl", "instagramUrl", "avatarUrl") VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10);', userInputs)
+      db.none('INSERT INTO users("firstName", "lastName", "email", "password", "phoneNum", "linkedinUrl", "githubUrl", "facebookUrl", "twitterUrl", "instagramUrl", "avatarUrl") VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11);', userInputs)
         .then((result) => {
           console.log('*** result ***', result);
           res.locals.user = result;
@@ -54,7 +54,7 @@ module.exports = {
             signupSuccess: false,
           });
         }
-        // Only returns next if email_address is not in DB
+        // Only returns next if email is not in DB
         return next();
       })
       .catch(err => res.status(500).send(err));
