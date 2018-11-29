@@ -13,7 +13,7 @@ const initialState = {
   signupPassword: '',
   loginEmail: '',
   loginPassword: '',
-  isLoggedIn: false,
+  isLoggedIn: true,
   loggedInUser: '',
   showloginFailedMessage: false,
 };

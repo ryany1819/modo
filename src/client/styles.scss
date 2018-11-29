@@ -264,14 +264,15 @@ color: black;
   flex-direction: column;
   justify-content: space-between;
   width: 200px;
-  height: 600px;
+  height: 100%;
   background: grey;
 }
 
 .groups {
   height: 100px;
-  width: 100px;
-  margin: auto;
+  width: 150px;
+  margin: 10px;
+  white-space: normal;
 
 }
 

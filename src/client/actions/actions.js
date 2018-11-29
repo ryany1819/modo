@@ -76,7 +76,7 @@ export const submitSignup = (redirectToMain) => {
       signupPhoneNumber,
       signupPassword,
     } = getState().userReducer;
-  
+
     const signupInfoObj = {
       firstName: signupFirstName,
       lastName: signupLastName,
@@ -92,19 +92,19 @@ export const submitSignup = (redirectToMain) => {
     };
 
     fetch('/signup', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json; charset=utf-8',
-      },
-      body: JSON.stringify(signupInfoObj),
-    })
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json; charset=utf-8',
+        },
+        body: JSON.stringify(signupInfoObj),
+      })
       .then((res) => {
         return res.json();
       })
       .then((data) => {
         // if (data.signupSuccess) {
-          redirectToMain();
-          dispatch(successfulSignup(signupEmail));
+        redirectToMain();
+        dispatch(successfulSignup(signupEmail));
         // } else {
         //   dispatch(failedSignUp(data.msg));
         // }
@@ -143,19 +143,19 @@ export const submitLogin = (redirectToMain) => {
       loginEmail,
       loginPassword
     } = getState().userReducer;
-  
+
     const loginInfoObj = {
       email: loginEmail,
       password: loginPassword,
     };
 
     fetch('/login', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json; charset=utf-8',
-      },
-      body: JSON.stringify(loginInfoObj),
-    })
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json; charset=utf-8',
+        },
+        body: JSON.stringify(loginInfoObj),
+      })
       .then((res) => {
         return res.json();
       })
@@ -170,6 +170,61 @@ export const submitLogin = (redirectToMain) => {
       .catch((err) => {
         console.log(err);
       });
+
+    dispatch(successfulSignup());
   };
 };
 /* eslint-enable */
+
+export const updateGroups = data => ({
+  type: types.UPDATE_GROUPS,
+  payload: data,
+});
+
+export const updateCards = data => ({
+  type: types.UPDATE_CARDS,
+  payload: data,
+});
+
+/* eslint-disable */
+export const getGroups = () => {
+  return (dispatch, getState) => {
+    fetch(`/getGroups`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json; charset=utf-8',
+        },
+      })
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        dispatch(updateGroups(data));
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+}
+
+/* eslint-disable */
+export const getCards = (groupId) => {
+  console.log('groups action', groupId)
+  return (dispatch, getState) => {
+    fetch(`/getUserGroup/${groupId}`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json; charset=utf-8',
+        },
+      })
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        dispatch(updateCards(data));
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+};
