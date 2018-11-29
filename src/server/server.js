@@ -34,6 +34,7 @@ app.post('/signup', userController.checkEmailExists, userController.createUser, 
   res.status(200).json({
     signupSuccess: true,
     loginSuccess: true,
+    msg: 'Signup successful!',
   });
 });
 
@@ -59,15 +60,23 @@ app.post('/login', userController.verifyUser, (req, res) => {
 //   });
 // });
 
-app.post('/newGroup', groupController.createGroup, (req, res) => {
+app.post('/createGroup', groupController.createGroup, (req, res) => {
   res.status(200).json({
     newGroupSuccess: true,
     msg: 'New group created successful!',
   });
 });
 
+app.get('/getGroups', groupController.getGroups, (req, res) => {
+  res.status(200).send(res.locals.groups);
+});
+
 app.get('/selectGroup', groupController.selectGroup, (req, res) => {
   res.status(200).send(res.locals.group);
+});
+
+app.get('/getUserGroup/:groupId', groupController.getUserGroup, (req, res) => {
+  res.status(200).send(res.locals.userGroup);
 });
 
 app.post('/joinGroup', groupController.joinGroup, (req, res) => {
