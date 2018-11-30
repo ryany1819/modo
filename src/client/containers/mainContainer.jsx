@@ -12,8 +12,14 @@ const mapStateToProps = store => ({
   cards: store.leftContainerReducer.cards,
 });
 
+const mapDispatchToProps = dispatch => ({
+  joinGroup: () => {
+    dispatch(actions.joinGroup());
+  },
+});
+
 const mainContainer = (props) => {
-  const { cards, loggedInUser } = props;
+  const { cards, loggedInUser, joinGroup } = props;
   const cardsArray = cards.map((card, index) => <Card card={card} key={index} />);
 
   return (
@@ -23,10 +29,13 @@ const mainContainer = (props) => {
       </div>
       <div className="innerDiv">
         <UserContainer loggedInUser={loggedInUser} />
-        <div className="cardContainer">{ cardsArray }</div>
+        <div className="cardContainer">
+          <div><button onClick={joinGroup}>Join Group</button></div>
+          { cardsArray }
+        </div>
       </div>
     </div>
   );
 };
 
-export default connect(mapStateToProps, null)(mainContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(mainContainer);

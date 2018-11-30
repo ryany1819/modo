@@ -3,11 +3,11 @@ import React from 'react';
 
 
 const Group = (props) => {
-  const { group, getCards } = props;
+  const { group, getCards, updateGroup } = props;
 
   return (
-    <button className="groups" onClick={() => getCards(group.groupId)}>
-    { group.groupName }
+    <button className="groups" id={group.groupId} onClick={() => { updateGroup(group.groupId); getCards(group.groupId); }}>
+      { group.groupName }
     </button>
   );
 };

@@ -17,3 +17,5 @@ export const UPDATE_CARDS = 'UPDATE_CARDS';
 export const SUBMIT_LOGIN = 'SUBMIT_LOGIN';
 export const SUCCESSFUL_LOGIN = 'SUCCESSFUL_LOGIN';
 export const FAILED_LOGIN = 'FAILED_LOGIN';
+export const UPDATE_GROUP = 'UPDATE_GROUP';
+export const JOIN_GROUP = 'JOIN_GROUP';

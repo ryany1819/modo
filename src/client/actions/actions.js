@@ -230,3 +230,27 @@ export const getCards = (groupId) => {
       });
   };
 };
+
+export const updateGroup = groupId => ({
+  type: types.UPDATE_GROUP,
+  payload: groupId,
+});
+
+export const joinGroup = () => {
+  return (dispatch, getState) => {
+    const { currentGroup } = getState().leftContainerReducer;
+    const {loggedInUser} = getState().userReducer;
+    const userInfo = { currentGroup, loggedInUser }
+console.log('adawd', currentGroup, loggedInUser)
+    fetch(`/joinGroup`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json; charset=utf-8',
+        },
+        body: JSON.stringify(userInfo),
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+};

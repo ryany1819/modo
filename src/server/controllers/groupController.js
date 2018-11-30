@@ -6,7 +6,7 @@ module.exports = {
       groupName, groupAvatarUrl,
     } = req.body;
 
-    db.none(`INSERT INTO groups("groupName", "groupAvatarUrl") VALUES($1, $2);`, [groupName, groupAvatarUrl])
+    db.none('INSERT INTO groups("groupName", "groupAvatarUrl") VALUES($1, $2);', [groupName, groupAvatarUrl])
       .then((result) => {
         console.log('​*** result ***', result);
         res.locals.group = groupName;
@@ -55,13 +55,15 @@ module.exports = {
 
   joinGroup: (req, res, next) => {
     const {
-      groupId, userId,
+      currentGroup, loggedInUser,
     } = req.body;
-
-    db.none(`INSERT INTO "userGroups"("groupId", "userId") VALUES($1, $2);`, [groupId, userId])
-      .then(() => {
+    console.log('a', currentGroup, loggedInUser);
+    db.one('SELECT "userId" from "users" WHERE email = $1;', [loggedInUser])
+      .then((data) => {
+        console.log(data);
+        db.none('INSERT INTO "userGroups" ("groupId", "userId") VALUES ($1, $2)', [currentGroup, data.userId]);
         next();
       })
-      .catch(err => res.status(500).send(err));
+      .catch((err) => { console.log(err); res.status(500).send(err); });
   },
 };

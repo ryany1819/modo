@@ -23,6 +23,9 @@ const mapDispatchToProps = dispatch => ({
   getCards: (groupId) => {
     dispatch(actions.getCards(groupId));
   },
+  updateGroup: (groupId) => {
+    dispatch(actions.updateGroup(groupId));
+  },
 });
 
 class LeftContainer extends Component {
@@ -35,8 +38,8 @@ class LeftContainer extends Component {
   render() {
     //  console.log('props', this.props.groups)
 
-    const { groups, getCards } = this.props;
-    const groupsArray = groups.map((group, index) => <Group group={group} getCards={getCards} key={index} />);
+    const { groups, getCards, updateGroup } = this.props;
+    const groupsArray = groups.map((group, index) => <Group group={group} getCards={getCards} key={index} updateGroup={updateGroup} />);
     return (
       <div className="leftpanel">
         { groupsArray }
