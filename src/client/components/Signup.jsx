@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../actions/actions.js';
+import AvatarUpload from './AvatarUpload.jsx';
 
 const mapStateToProps = store => ({
   signupFirstName: store.userReducer.signupFirstName,
@@ -13,6 +14,7 @@ const mapStateToProps = store => ({
   signupEmail: store.userReducer.signupEmail,
   signupPhoneNumber: store.userReducer.signupPhoneNumber,
   signupPassword: store.userReducer.signupPassword,
+  signupAvatarUrl: store.userReducer.signupAvatarUrl
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -103,6 +105,7 @@ class Signup extends Component {
         >
           <div>
             <h1>Sign up for free</h1>
+            <AvatarUpload />
             <label>Email:</label>
             <input id="signupemail" type="text" placeholder="(required)" value={signupEmail} onChange={updateSignupEmail} />
             <label>Password:</label>

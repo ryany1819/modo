@@ -81,9 +81,7 @@ app.post('/joinGroup', groupController.joinGroup, (req, res) => {
 app.get('/test-upload', (req, res) => {
   res.sendFile(`${__dirname}/test-upload.html`);
 });
-app.post('/upload', upload.single('upfile'), cloudinaryController.upload, (req, res) => {
-  res.send(req.file);
-});
+app.post('/upload', upload.single('avatar'), cloudinaryController.upload);
 // for static contents
 app.use(express.static(`${__dirname}/../../dist`));
 
