@@ -14,7 +14,7 @@ const mapStateToProps = store => ({
   signupEmail: store.userReducer.signupEmail,
   signupPhoneNumber: store.userReducer.signupPhoneNumber,
   signupPassword: store.userReducer.signupPassword,
-  signupAvatarUrl: store.userReducer.signupAvatarUrl
+  signupAvatarUrl: store.userReducer.signupAvatarUrl,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -105,7 +105,6 @@ class Signup extends Component {
         >
           <div>
             <h1>Sign up for free</h1>
-            <AvatarUpload />
             <label>Email:</label>
             <input id="signupemail" type="text" placeholder="(required)" value={signupEmail} onChange={updateSignupEmail} />
             <label>Password:</label>
@@ -126,6 +125,7 @@ class Signup extends Component {
             <input type="text" value={signupTwitterUrl} onChange={updateSignupTwitterUrl} />
             <label>Instagram URL:</label>
             <input type="text" value={signupInstagramUrl} onChange={updateSignupInstagramUrl} />
+            <label>Upload Avatar:</label><AvatarUpload />
             <button id="signupbtn">Sign-up with MoJoe</button>
             <button className="registerbtn" onClick={() => { event.preventDefault(); history.push('/'); }}>Back to Log In</button>
           </div>
