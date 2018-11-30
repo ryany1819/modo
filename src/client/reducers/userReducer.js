@@ -11,6 +11,7 @@ const initialState = {
   signupEmail: '',
   signupPhoneNumber: '()',
   signupPassword: '',
+  signupAvatarUrl: 'https://res.cloudinary.com/demo/image/upload/w_400,h_400,c_crop,g_face,r_max/w_200/lady.jpg',
   loginEmail: '',
   loginPassword: '',
   isLoggedIn: false,
@@ -78,6 +79,12 @@ export default function (state = initialState, action) {
       return {
         ...state,
         signupPassword: action.payload,
+      };
+
+    case types.UPDATE_SIGNUP_AVATAR_URL:
+      return {
+        ...state,
+        signupAvatarUrl: action.payload
       };
 
     case types.UPDATE_LOGIN_EMAIL:

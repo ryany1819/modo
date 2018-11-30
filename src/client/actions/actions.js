@@ -60,6 +60,11 @@ export const failedSignup = message => ({
   payload: message,
 });
 
+export const updateSignupAvatarUrl = avatarUrl => ({
+  type: types.UPDATE_SIGNUP_AVATAR_URL,
+  payload: avatarUrl
+}); 
+
 /* eslint-disable */
 export const submitSignup = (redirectToMain) => {
   return (dispatch, getState) => {
@@ -75,6 +80,7 @@ export const submitSignup = (redirectToMain) => {
       signupEmail,
       signupPhoneNumber,
       signupPassword,
+      signupAvatarUrl
     } = getState().userReducer;
 
     const signupInfoObj = {
@@ -88,7 +94,7 @@ export const submitSignup = (redirectToMain) => {
       email: signupEmail,
       phoneNum: signupPhoneNumber,
       password: signupPassword,
-      avatarUrl: 'https://res.cloudinary.com/demo/image/upload/w_400,h_400,c_crop,g_face,r_max/w_200/lady.jpg'
+      avatarUrl: signupAvatarUrl
     };
 
     fetch('/signup', {
