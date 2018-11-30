@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Alex+Brush%7COverpass+Mono:600,700');
-html, body {
+html {
  font-family: "Segoe UI",Arial,sans-serif;
  display:block;
  height: 100vh;
@@ -252,39 +252,83 @@ height: 40px;
 color: black;
 }
 
-.body {
-  display: flex;
-  flex-direction: row;
-  width: 1000px;
-  background: orange;
+.maincontainer {
+  // display: flex;
+  // flex-direction: row;
+  // background: orange;
+  display: grid;
+  grid-template-columns: 500px auto;
+}
+
+.left-grid {
+  overflow-y: scroll;
+  height: 1000px;
 }
  
 .leftpanel {
   display:flex;
   flex-direction: column;
-  justify-content: space-between;
-  width: 200px;
-  height: 600px;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
   background: grey;
 }
 
-.groups {
-  height: 100px;
-  width: 100px;
-  margin: auto;
+.rightpanel {
+  grid-column-start: 2;
+  grid-column-end: 3;
+}
 
+.groups {
+  height: 50vh;
+  width: 75%;
+  margin-top: 20px;
+  white-space: normal;
 }
 
 .cards {
-  height: 150px;
-  width: 400px;
-  background: mediumaquamarine;
+  width: 1000px;
+  padding: 10px;
+  margin-top: 10px;
+  border: 5px solid black;
+  border-radius: 15px;
 }
 
 .innerDiv {
-  padding: 20px;
+  // padding: 20px;
+  width: 100%;
+  // display: flex;
+  // flex-direction: column;
+  height: 100vh;
+  display: grid;
+  grid-template-rows: 20vh auto;
 }
 
 .user {
   background: bisque;
+  width: 100%;
+  grid-row-start: 1;
+  grid-row-end: 1;
+  font-size: 5vh;
+}
+
+.avatar {
+  border-radius: 50%;
+  height: 10vh;
+  width: 10vh;
+}
+
+.cardContainer {
+  display: flex;
+  justify-content: flex-start;
+  align-content: center;
+  flex-direction: column;
+  align-items: center;
+  overflow-y: scroll;
+  grid-row-start: 2;
+  grid-row-end: 3;
+  height: 80vh;
+  width: auto;
 }

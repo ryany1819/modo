@@ -3,19 +3,20 @@ import * as types from '../constants/actionTypes';
 const initialState = {
   signupFirstName: '',
   signupLastName: '',
-  signupFacebookUrl: '',
-  signupTwitterUrl: '',
-  signupLinkedInUrl: '',
-  signupGithubUrl: '',
-  signupInstagramUrl: '',
+  signupFacebookUrl: 'https://www.facebook.com/',
+  signupTwitterUrl: 'https://twitter.com/',
+  signupLinkedInUrl: 'https://www.linkedin.com/in/',
+  signupGithubUrl: 'https://github.com/',
+  signupInstagramUrl: 'https://www.instagram.com/',
   signupEmail: '',
-  signupPhoneNumber: '',
+  signupPhoneNumber: '()',
   signupPassword: '',
   signupAvatarUrl: 'https://res.cloudinary.com/demo/image/upload/w_400,h_400,c_crop,g_face,r_max/w_200/lady.jpg',
   loginEmail: '',
   loginPassword: '',
   isLoggedIn: false,
   loggedInUser: '',
+  showloginFailedMessage: false,
 };
 
 export default function (state = initialState, action) {
@@ -110,6 +111,12 @@ export default function (state = initialState, action) {
         ...state,
         isLoggedIn: true,
         loggedInUser: action.payload,
+      };
+
+    case types.FAILED_LOGIN:
+      return {
+        ...state,
+        showloginFailedMessage: true,
       };
 
     default:

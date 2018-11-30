@@ -6,6 +6,7 @@ const mapStateToProps = store => ({
   loginEmail: store.userReducer.loginEmail,
   loginPassword: store.userReducer.loginPassword,
   isLoggedIn: store.userReducer.isLoggedIn,
+  showLoginFailedMessage: store.userReducer.showLoginFailedMessage,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -15,8 +16,8 @@ const mapDispatchToProps = dispatch => ({
   updateLoginPassword: (event) => {
     dispatch(actions.updateLoginPassword(event.target.value));
   },
-  updateSubmitLogin: (event) => {
-    dispatch(actions.updateLoginPassword(event.target.value));
+  submitLogin: (redirectToMain) => {
+    dispatch(actions.submitLogin(redirectToMain));
   },
 });
 
@@ -25,16 +26,21 @@ class Login extends Component {
     super(props);
 
     this.redirectToMain = this.redirectToMain.bind(this);
-  }
-
-  redirectToMain() {
-    this.props.history.push('/main');
+    this.highlightText = this.highlightText.bind(this);
   }
 
   componentWillMount() {
     if (this.props.isLoggedIn) {
       this.props.history.push('/main');
     }
+  }
+
+  redirectToMain() {
+    this.props.history.push('/main');
+  }
+
+  highlightText(event) {
+    event.target.select();
   }
 
   render() {
@@ -44,19 +50,30 @@ class Login extends Component {
       updateLoginEmail,
       updateLoginPassword,
       history,
+      showLoginFailedMessage,
+      submitLogin,
     } = this.props;
 
+    const { redirectToMain, highlightText } = this;
+    console.log(1, showLoginFailedMessage);
     return (
       <div>
         <div id="logincontent">
-          <div id="logintitle">MoDo</div>
-          <form id="login" onSubmit={this.handleSubmit}>
+          <div id="logintitle">MoJoe</div>
+          <form
+            id="login"
+            onSubmit={(event) => {
+              event.preventDefault();
+              submitLogin(redirectToMain);
+            }}
+          >
             <div className="content">
               <h1>User Login</h1>
-              <input type="text" placeholder="Email Address" value={loginEmail} onChange={updateLoginEmail} />
-              <input type="password" placeholder="Password" value={loginPassword} onChange={updateLoginPassword} />
+              <input type="text" placeholder="Email Address" value={loginEmail} onChange={updateLoginEmail} onFocus={highlightText} />
+              <input type="password" placeholder="Password" value={loginPassword} onChange={updateLoginPassword} onFocus={highlightText} />
               <button className="loginbtn" type="submit" value="Submit">Login</button>
               <button className="registerbtn" onClick={() => { event.preventDefault(); history.push('/signup'); }}>Register</button>
+              {showLoginFailedMessage ? <p>Incorrect Email Address or Password</p> : null}
             </div>
           </form>
         </div>
