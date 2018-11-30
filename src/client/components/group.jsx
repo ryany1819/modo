@@ -6,7 +6,9 @@ const Group = (props) => {
   const { group, getCards } = props;
 
   return (
-    <button className="groups" onClick={() => getCards(group.groupId)}>  { group.groupName } </button>
+    <button className="groups" onClick={() => getCards(group.groupId)}>
+    { group.groupName }
+    </button>
   );
 };
 export default Group;
