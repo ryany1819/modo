@@ -111,18 +111,18 @@ class Signup extends Component {
             <input id="signupfname" type="text" value={signupFirstName} onChange={updateSignupUsername} />
             <label>Last Name:</label>
             <input id="signuplname" type="text" value={signupLastName} onChange={updateSignupLastName} />
-            <label>Facebook URL:</label>
-            <input type="text" value={signupFacebookUrl} onChange={updateSignupFacebookUrl} />
-            <label>Twitter URL:</label>
-            <input type="text" value={signupTwitterUrl} onChange={updateSignupTwitterUrl} />
+            <label>Phone Number:</label>
+            <input id="signupephone" type="text" value={signupPhoneNumber} onChange={updateSignupPhoneNumber} />
             <label>Linkedin URL:</label>
             <input type="text" value={signupLinkedInUrl} onChange={updateSignupLinkedInUrl} />
             <label>Github URL:</label>
             <input type="text" value={signupGithubUrl} onChange={updateSignupGithubUrl} />
+            <label>Facebook URL:</label>
+            <input type="text" value={signupFacebookUrl} onChange={updateSignupFacebookUrl} />
+            <label>Twitter URL:</label>
+            <input type="text" value={signupTwitterUrl} onChange={updateSignupTwitterUrl} />
             <label>Instagram URL:</label>
             <input type="text" value={signupInstagramUrl} onChange={updateSignupInstagramUrl} />
-            <label>Phone Number:</label>
-            <input id="signupephone" type="text" value={signupPhoneNumber} onChange={updateSignupPhoneNumber} />
             <button id="signupbtn">Sign-up with MoJoe</button>
             <button className="registerbtn" onClick={() => { event.preventDefault(); history.push('/'); }}>Back to Log In</button>
           </div>
