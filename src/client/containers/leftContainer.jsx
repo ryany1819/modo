@@ -36,9 +36,9 @@ class LeftContainer extends Component {
     //  console.log('props', this.props.groups)
 
     const { groups, getCards } = this.props;
-    const groupsArray = groups.map((group, index) => <Group group={group} getCards={getCards} key={ index } />);
+    const groupsArray = groups.map((group, index) => <Group group={group} getCards={getCards} key={index} />);
     return (
-      <div>
+      <div className="leftpanel">
         { groupsArray }
       </div>
 
