@@ -253,38 +253,70 @@ color: black;
 }
 
 .body {
-  display: flex;
-  flex-direction: row;
-  width: 1000px;
-  background: orange;
+  // display: flex;
+  // flex-direction: row;
+  // background: orange;
+  display: grid;
+  grid-template-columns: 25% 75%;
 }
  
 .leftpanel {
   display:flex;
   flex-direction: column;
-  justify-content: space-between;
-  width: 200px;
-  height: 600px;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
   background: grey;
 }
 
 .groups {
   height: 100px;
-  width: 100px;
-  margin: auto;
+  width: 75%;
+  margin-top: 20px;
+  white-space: normal;
 
 }
 
 .cards {
-  height: 150px;
   width: 400px;
   background: mediumaquamarine;
+  padding: 10px;
+  margin-bottom: 10px;
 }
 
 .innerDiv {
-  padding: 20px;
+  // padding: 20px;
+  width: 100%;
+  // display: flex;
+  // flex-direction: column;
+  display: grid;
+  grid-template-rows: 200px auto;
 }
 
 .user {
   background: bisque;
+  width: 100%;
+  display: grid;
+  grid-row-start: 1;
+  grid-row-end: 1;
+}
+
+.avatar {
+  border-radius: 50%;
+  height: 10vh;
+  width: 10vh;
+}
+
+#cardContainer {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  flex-direction: column;
+  align-items: center;
+  overflow-y: scroll;
+  grid-row-start: 2;
+  grid-row-end: 3;
+  margin: auto;
 }
