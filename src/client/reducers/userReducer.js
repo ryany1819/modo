@@ -11,7 +11,7 @@ const initialState = {
   signupEmail: '',
   signupPhoneNumber: '()',
   signupPassword: '',
-  signupAvatarUrl: 'https://res.cloudinary.com/demo/image/upload/w_400,h_400,c_crop,g_face,r_max/w_200/lady.jpg',
+  signupAvatarUrl: 'https://cdn2.iconfinder.com/data/icons/gaming-and-beyond-part-2-1/80/User_gray-512.png',
   loginEmail: '',
   loginPassword: '',
   isLoggedIn: false,

@@ -37,7 +37,7 @@ class AvatarUpload extends Component {
     return (
       <React.Fragment>
         <input type="file" onChange={this.handleChange} />
-        <img src={signupAvatarUrl} />
+        <img id="avatar" src={signupAvatarUrl} />
       </React.Fragment>
     );
   }

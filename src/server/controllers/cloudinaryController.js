@@ -16,8 +16,10 @@ module.exports = {
         throw error;
       }
       fs.unlink(path, (err) => {
-        if (err)
+        if (err) {
+          console.log(err);
           throw err;
+        }
         res.send(result);
       });
     });
