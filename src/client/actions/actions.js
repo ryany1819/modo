@@ -141,7 +141,9 @@ export const submitLogin = (redirectToMain) => {
     // Get user info from state.
     const {
       loginEmail,
-      loginPassword
+      loginPassword,
+      signupFirstName,
+      signupLastName,
     } = getState().userReducer;
 
     const loginInfoObj = {

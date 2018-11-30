@@ -13,19 +13,17 @@ const mapStateToProps = store => ({
 });
 
 const mainContainer = (props) => {
-  const { cards } = props;
+  const { cards, loggedInUser } = props;
   const cardsArray = cards.map((card, index) => <Card card={card} key={index} />);
 
   return (
-    <div className="body">
+    <div className="maincontainer">
       <div>
         <LeftContainer />
       </div>
       <div className="innerDiv">
-        <UserContainer />
-        <div id="cardContainer">
-          { cardsArray }
-        </div>
+        <UserContainer loggedInUser={loggedInUser} />
+        <div className="cardContainer">{ cardsArray }</div>
       </div>
     </div>
   );

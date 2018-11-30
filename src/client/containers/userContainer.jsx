@@ -1,11 +1,14 @@
 /* eslint-disable import/extensions */
 import React from 'react';
 
-const userContainer = () => (
-
-  <div className="user">
-    <h1> user info container </h1>
-  </div>
-);
+const userContainer = (props) => {
+  const { loggedInUser } = props;
+  console.log(loggedInUser);
+  return (
+    <div className="user">
+      Welcome, {loggedInUser}!
+    </div>
+  );
+};
 
 export default userContainer;

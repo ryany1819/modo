@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Alex+Brush%7COverpass+Mono:600,700');
-html, body {
+html {
  font-family: "Segoe UI",Arial,sans-serif;
  display:block;
  height: 100vh;
@@ -252,12 +252,17 @@ height: 40px;
 color: black;
 }
 
-.body {
+.maincontainer {
   // display: flex;
   // flex-direction: row;
   // background: orange;
   display: grid;
-  grid-template-columns: 25% 75%;
+  grid-template-columns: 500px auto;
+}
+
+.left-grid {
+  overflow-y: scroll;
+  height: 1000px;
 }
  
 .leftpanel {
@@ -267,23 +272,28 @@ color: black;
   align-content: center;
   align-items: center;
   width: 100%;
-  height: 100%;
+  height: 100vh;
   background: grey;
 }
 
+.rightpanel {
+  grid-column-start: 2;
+  grid-column-end: 3;
+}
+
 .groups {
-  height: 100px;
+  height: 50vh;
   width: 75%;
   margin-top: 20px;
   white-space: normal;
-
 }
 
 .cards {
-  width: 400px;
-  background: mediumaquamarine;
+  width: 1000px;
   padding: 10px;
-  margin-bottom: 10px;
+  margin-top: 10px;
+  border: 5px solid black;
+  border-radius: 15px;
 }
 
 .innerDiv {
@@ -291,16 +301,17 @@ color: black;
   width: 100%;
   // display: flex;
   // flex-direction: column;
+  height: 100vh;
   display: grid;
-  grid-template-rows: 200px auto;
+  grid-template-rows: 20vh auto;
 }
 
 .user {
   background: bisque;
   width: 100%;
-  display: grid;
   grid-row-start: 1;
   grid-row-end: 1;
+  font-size: 5vh;
 }
 
 .avatar {
@@ -309,14 +320,15 @@ color: black;
   width: 10vh;
 }
 
-#cardContainer {
+.cardContainer {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-content: center;
   flex-direction: column;
   align-items: center;
   overflow-y: scroll;
   grid-row-start: 2;
   grid-row-end: 3;
-  margin: auto;
+  height: 80vh;
+  width: auto;
 }
